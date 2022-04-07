@@ -31,7 +31,7 @@ export class TicketsService {
         id: 4,
         validFrom: new Date(Date.now()),
         validTo: new Date(),
-        name: 'Day Ticket',
+        name: 'Month Pass',
         used: false
       }, 
       {

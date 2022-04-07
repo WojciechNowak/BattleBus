@@ -20,7 +20,10 @@ export class UserService {
 
   login(username: string) : Observable<User> {
     let request = this.http.get<User>('http://localhost:5075/User', {params: {userName: username}});
-    request.subscribe(x => this.loggedInUser = x);
+    request.subscribe(x => {
+      console.info('set user?');
+      this.loggedInUser = x;
+    });
     return request;
   }
 

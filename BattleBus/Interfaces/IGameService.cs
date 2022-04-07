@@ -9,6 +9,7 @@ namespace BattleBus.Interfaces
         void JoinGame(string userName);
         void StartGame();
         void GameResult(string userName, int result);
+        List<User> WhoIsInGame();
         bool IsGameAvailable();
         bool IsGameStarted();
         User? IsGameFinished();

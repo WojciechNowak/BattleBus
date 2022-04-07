@@ -11,11 +11,6 @@ namespace BattleBus.Services
             var jsonString = File.ReadAllText(@".\Database\users.json");
             List<User>? users = JsonSerializer.Deserialize<List<User>>(jsonString);
             return users ?? new List<User>();
-            //
-            //using (StreamReader reader = new StreamReader(fileStream))
-            //{
-            //    string line = reader.ReadLine();
-            //}
         }
     }
 }

@@ -21,6 +21,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddScoped<IDbService, DbService>();
+builder.Services.AddSingleton<IPassengerInfoService, PassengerInfoService>();
 
 var app = builder.Build();
 app.UseCors();

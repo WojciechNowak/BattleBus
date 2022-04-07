@@ -13,7 +13,13 @@
     </ion-toolbar>
   </ion-header>
 
-  <ion-item>
+  <ion-item *ngIf="!submitted">
     <ion-button color="primary" (click)="finish()">Finish</ion-button>
   </ion-item>
+  <ion-row *ngIf="submitted">
+    <ion-item>
+      <p>Waiting for other players</p>
+      <p>Your result was : {{result}}</p>
+    </ion-item>
+  </ion-row>
 </ion-content>

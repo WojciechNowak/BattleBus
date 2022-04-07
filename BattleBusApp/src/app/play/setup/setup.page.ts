@@ -28,6 +28,7 @@ export class SetupPage implements OnInit {
           });
           this.gameService.isGameStarted().subscribe(x => {
             if (x === true) {
+              window.clearInterval(interGame);
               this.router.navigate(['tabs', 'play', 'battle']);
             }
           });

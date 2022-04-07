@@ -32,6 +32,9 @@ export class GameService {
     startGame() {
       return this.http.post(`http://localhost:5075/Game/StartGame?userName=${this.userService.getUser().userName}`, '');
     }
+    gameResult(result: number) {
+      return this.http.post(`http://localhost:5075/Game/GameResult?userName=${this.userService.getUser().userName}&gameResult=${result}`, '');
+    }
 
     whoIsInTheGame() {
       return this.http.get<User[]>('http://localhost:5075/Game/WhoIsInGame');
@@ -55,6 +58,6 @@ export class GameService {
       if(this.userService.getUser() == undefined){
         return;
       }
-      return this.http.get<string>('http://localhost:5075/Game/IsGameFinished');
+      return this.http.get<User>('http://localhost:5075/Game/IsGameFinished');
     }
 }

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { GameService } from 'src/app/game.service';
+import { User } from 'src/app/user.service';
 
 @Component({
   selector: 'app-setup',
@@ -10,6 +11,7 @@ import { GameService } from 'src/app/game.service';
 export class SetupPage implements OnInit {
   created: boolean;
   canStart: boolean;
+  players: User[];
 
   constructor(private router: Router,
     private gameService: GameService) { }
@@ -21,6 +23,9 @@ export class SetupPage implements OnInit {
           this.created = x;
             
         let interGame = window.setInterval(() => {
+          this.gameService.whoIsInTheGame().subscribe(x => {
+            this.players = x;
+          });
           this.gameService.isGameStarted().subscribe(x => {
             if (x === true) {
               this.router.navigate(['tabs', 'play', 'battle']);

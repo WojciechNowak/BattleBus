@@ -20,7 +20,7 @@ namespace BattleBus.Controllers
         [HttpGet(Name = "GetUser")]
         public User Get(string userName)
         {
-            var user = _db.GetUsers().SingleOrDefault(user => String.Equals(user.UserName, userName, StringComparison.OrdinalIgnoreCase));
+            var user = _db.GetUsers().FirstOrDefault(user => String.Equals(user.UserName, userName, StringComparison.OrdinalIgnoreCase));
             return user;
         }
     }

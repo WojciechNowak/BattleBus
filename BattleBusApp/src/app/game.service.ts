@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { UserService } from './user.service';
+import { User, UserService } from './user.service';
 
 @Injectable({
   providedIn: 'root'
@@ -31,6 +31,10 @@ export class GameService {
 
     startGame() {
       return this.http.post(`http://localhost:5075/Game/StartGame?userName=${this.userService.getUser().userName}`, '');
+    }
+
+    whoIsInTheGame() {
+      return this.http.get<User[]>('http://localhost:5075/Game/WhoIsInGame');
     }
 
     isGameAvailable() {

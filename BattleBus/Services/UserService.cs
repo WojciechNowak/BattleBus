@@ -16,7 +16,7 @@ namespace BattleBus.Services
 
         public User GetUser(string userName)
         {
-            var user = _users.Find(x => x.UserName == userName);
+            var user = _users.Find(x => String.Equals(x.UserName, userName, StringComparison.OrdinalIgnoreCase));
             if (user != null)
             {
                 user = new User { UserName = userName };

@@ -70,6 +70,11 @@ namespace BattleBus.Services
             }
         }
 
+        public List<User> WhoIsInGame()
+        {
+            return _game.Users;
+        }
+
         public User? IsGameFinished()
         {
             return _winner;

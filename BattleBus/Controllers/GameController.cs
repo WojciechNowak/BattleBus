@@ -61,6 +61,15 @@ namespace BattleBus.Controllers
             }
         }
 
+        [HttpGet(Name = "WhoIsInGame")]
+        public IEnumerable<User> WhoIsInGame()
+        {
+            lock (LockGameObject)
+            {
+                return _gameService.WhoIsInGame();
+            }
+        }
+
         [HttpGet(Name = "IsGameAvailable")]
         public bool IsGameAvailable()
         {

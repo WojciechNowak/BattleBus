@@ -32,7 +32,7 @@ export class LoginPage implements OnInit {
       console.info(this.formlogin.controls.username.value);
       this.userService.login(this.formlogin.controls.username.value)
         .subscribe(x => {
-          this.router.navigate(['tabs/tab1']);
+          this.router.navigate(['tabs/tickets']);
         });
     }
   }

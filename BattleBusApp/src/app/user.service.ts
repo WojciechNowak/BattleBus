@@ -5,9 +5,10 @@ import { Observable, of } from 'rxjs';
 interface User  {
   username: string, 
   gameStreak: number,
-  level: number
+  level: number,
+  favouriteGame: string,
+  discount: number
 }
-
 
 @Injectable({
   providedIn: 'root'
@@ -18,9 +19,9 @@ export class UserService {
   constructor(private http: HttpClient) { }
 
   login(username: string) : Observable<User> {
-    console.info(username);
-    this.loggedInUser = { username, gameStreak: 5, level: 2 };
-    return of(this.loggedInUser);
+    let request = this.http.get<User>('http://localhost:5075/User', {params: {userName: username}});
+    request.subscribe(x => this.loggedInUser = x);
+    return request;
   }
 
   getUser(): User{

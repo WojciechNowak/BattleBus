@@ -1,0 +1,25 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Login</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content padding>
+  <ion-grid>
+    <ion-row justify-content-center>
+      <form [formGroup]="formlogin">
+  <ion-label>Username</ion-label>
+  <ion-input placeholder="Enter name" formControlName="username"></ion-input>
+  <ion-item *ngIf="!formlogin.controls.username.valid  && (formlogin.controls.username.valid || submitAttempt)">
+    <p>Please enter a valid name.</p>
+  </ion-item>
+        </form>
+    </ion-row>
+  </ion-grid>
+</ion-content>
+
+<ion-item>
+</ion-item>
+
+<ion-item>
+  <ion-button color="primary" fill="outline"(click)="doLogin()">Login</ion-button>
+</ion-item>

@@ -20,7 +20,7 @@ export class AppComponent implements OnInit {
       this.gameService.GetBusUsers().subscribe(x => {
         let filtered = x.filter(y => y.toLowerCase() != this.userService.getUser().userName.toLowerCase());
 
-        if (filtered.length > 0){
+        if (filtered.length > 0 && filtered.length !== x.length){
           window.clearInterval(inter);
           let toast = this.toastCtrl.create({  
             message: `Player ${filtered[0]} has entered the Battle bus!`,  

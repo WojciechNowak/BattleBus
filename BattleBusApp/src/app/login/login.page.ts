@@ -15,7 +15,7 @@ export class LoginPage implements OnInit {
   constructor(
     private userService: UserService,
     private formBuilder : FormBuilder,
-    private router: Router  ) { 
+    private router: Router) { 
    
       this.formlogin = this.formBuilder.group({
         username : new FormControl('', Validators.compose([

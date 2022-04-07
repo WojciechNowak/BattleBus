@@ -12,7 +12,7 @@ export class GameService {
     private userService: UserService) { }
 
     OnBus() {
-      let request = this.http.post('http://localhost:5075/PassengerInfo', {params: {userName: this.userService.getUser().userName}});
+      let request = this.http.get('http://localhost:5075/PassengerInfo/GetOn', {params: {name: this.userService.getUser().userName}});
       return request;
     }
 

@@ -1,0 +1,14 @@
+[
+  {
+    "UserName": "player1",
+    "FavouriteGame": "King Of The Carriage",
+    "GameStreak": 5,
+    "Level":  60
+  },
+  {
+    "UserName": "player2"
+  },
+  {
+    "UserName": "player3"
+  }
+]

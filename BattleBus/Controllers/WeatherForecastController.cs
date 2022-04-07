@@ -1,3 +1,4 @@
+using BattleBus.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BattleBus.Controllers
@@ -12,15 +13,18 @@ namespace BattleBus.Controllers
     };
 
         private readonly ILogger<WeatherForecastController> _logger;
+        private readonly IDbService _db;
 
-        public WeatherForecastController(ILogger<WeatherForecastController> logger)
+        public WeatherForecastController(ILogger<WeatherForecastController> logger, IDbService db)
         {
             _logger = logger;
+            _db = db;
         }
 
         [HttpGet(Name = "GetWeatherForecast")]
         public IEnumerable<WeatherForecast> Get()
         {
+            var users = _db.GetUsers();
             return Enumerable.Range(1, 5).Select(index => new WeatherForecast
             {
                 Date = DateTime.Now.AddDays(index),

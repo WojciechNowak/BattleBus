@@ -27,14 +27,14 @@ export class GamePage implements OnInit {
 
       let interGame = window.setInterval(() => {
         this.gameService.isGameFinished().subscribe(x => {
-          console.info(x);
           if (x != undefined) {
-            console.info(x);
             window.clearInterval(interGame);
             if (this.userService.getUser().userName.toLowerCase() == x.userName.toLowerCase()){
               this.router.navigate(['tabs', 'play', 'reward']);
             }
-            this.router.navigate(['tabs', 'tab3']);
+            else {
+              this.router.navigate(['tabs', 'tab3']);
+            }
           }
         });
       }, 1000);

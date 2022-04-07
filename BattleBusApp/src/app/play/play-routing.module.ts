@@ -15,6 +15,14 @@ const routes: Routes = [
   {
     path: 'game',
     loadChildren: () => import('./game/game.module').then( m => m.GamePageModule)
+  },
+  {
+    path: 'setup',
+    loadChildren: () => import('./setup/setup.module').then( m => m.SetupPageModule)
+  },
+  {
+    path: 'reward',
+    loadChildren: () => import('./reward/reward.module').then( m => m.RewardPageModule)
   }
 ];
 

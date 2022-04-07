@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 
 interface User  {
-  username: string, 
+  userName: string, 
   gameStreak: number,
   level: number,
   favouriteGame: string,
@@ -15,13 +15,15 @@ interface User  {
 })
 export class UserService {
   loggedInUser: User;
+  id: number;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+    this.id = Math.random();
+   }
 
   login(username: string) : Observable<User> {
     let request = this.http.get<User>('http://localhost:5075/User', {params: {userName: username}});
     request.subscribe(x => {
-      console.info('set user?');
       this.loggedInUser = x;
     });
     return request;
@@ -31,3 +33,4 @@ export class UserService {
     return this.loggedInUser;
   }
 }
+

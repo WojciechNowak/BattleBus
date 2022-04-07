@@ -15,6 +15,6 @@ export class GamePage implements OnInit {
 
   finish() {
       console.info('Game finished');
-      this.router.navigate(['tabs/tab3']);
+      this.router.navigate(['tabs', 'play', 'reward']);
   }
 }

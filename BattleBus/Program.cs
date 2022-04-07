@@ -20,8 +20,9 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddScoped<IDbService, DbService>();
+builder.Services.AddSingleton<IUserService, UserService>();
 builder.Services.AddSingleton<IPassengerInfoService, PassengerInfoService>();
+builder.Services.AddSingleton<IGameService, GameService>();
 
 var app = builder.Build();
 app.UseCors();

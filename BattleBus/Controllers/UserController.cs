@@ -9,9 +9,9 @@ namespace BattleBus.Controllers
     public class UserController : ControllerBase
     {
         private readonly ILogger<WeatherForecastController> _logger;
-        private readonly IDbService _db;
+        private readonly IUserService _db;
 
-        public UserController(ILogger<WeatherForecastController> logger, IDbService db)
+        public UserController(ILogger<WeatherForecastController> logger, IUserService db)
         {
             _logger = logger;
             _db = db;

@@ -2,8 +2,9 @@
 
 namespace BattleBus.Interfaces
 {
-    public interface IDbService
+    public interface IUserService
     {
         List<User> GetUsers();
+        User GetUser(string userName);
     }
 }

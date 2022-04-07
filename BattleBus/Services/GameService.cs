@@ -9,6 +9,7 @@ namespace BattleBus.Services
         public Dictionary<string, int> Result { get; set; } = new Dictionary<string, int>();
         public List<User> Users { get; set; } = new List<User>();
         public bool IsGameCreated { get; set; } = false;
+        public bool IsGameStarted { get; set; } = false;
         public bool IsGameFinished { get; set; } = false;
     }
 
@@ -22,7 +23,7 @@ namespace BattleBus.Services
         public GameService(IUserService userService)
         {
             var jsonString = File.ReadAllText(@".\Database\leaderboard.json");
-            _leaderboard = JsonSerializer.Deserialize<List<UserPoint>>(jsonString)?.OrderBy(up => up.Points).ToList() ?? new List<UserPoint>();
+            _leaderboard = JsonSerializer.Deserialize<List<UserPoint>>(jsonString)?.OrderByDescending(up => up.Points).ToList() ?? new List<UserPoint>();
             _userService = userService;
         }
 
@@ -36,14 +37,23 @@ namespace BattleBus.Services
             _game.Users = new List<User>() { _userService.GetUser(userName) };
             _game.Result = new Dictionary<string, int>();
             _game.IsGameCreated = true;
+            _game.IsGameStarted = false;
             _game.IsGameFinished = false;
             _winner = null;
         }
 
         public void JoinGame(string userName)
         {
-            if (!_game.Users.Any(u => String.Equals(u.UserName, userName)))
+            if (!_game.Users.Any(u => String.Equals(u.UserName, userName, StringComparison.OrdinalIgnoreCase)))
                 _game.Users.Add(_userService.GetUser(userName));
+        }
+
+        public void StartGame()
+        {
+            if (_game.Users.Count() >= 1)
+            {
+                _game.IsGameStarted = true;
+            }
         }
 
         public void GameResult(string userName, int result )
@@ -54,6 +64,7 @@ namespace BattleBus.Services
                 if (_game.Result.Count == _game.Users.Count)
                 {
                     _game.IsGameFinished = true;
+                    _game.IsGameStarted = false;
                     _winner = _userService.GetUser(_game.Result.OrderByDescending(r => r.Value).First().Key);
                 }
             }
@@ -67,6 +78,11 @@ namespace BattleBus.Services
         public bool IsGameAvailable()
         {
             return _game.IsGameCreated;
+        }
+
+        public bool IsGameStarted()
+        {
+            return _game.IsGameStarted;
         }
     }
 }

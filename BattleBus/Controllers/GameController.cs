@@ -43,12 +43,48 @@ namespace BattleBus.Controllers
             }
         }
 
+        [HttpPost(Name = "StartGame")]
+        public void StartGame()
+        {
+            lock (LockGameObject)
+            {
+                _gameService.StartGame();
+            }
+        }
+
+        [HttpPost(Name = "GameResult")]
+        public void GameResult(string userName, int gameResult)
+        {
+            lock (LockGameObject)
+            {
+                _gameService.GameResult(userName, gameResult);
+            }
+        }
+
         [HttpGet(Name = "IsGameAvailable")]
         public bool IsGameAvailable()
         {
             lock (LockGameObject)
             {
                 return _gameService.IsGameAvailable();
+            }
+        }
+
+        [HttpGet(Name = "IsGameStarted")]
+        public bool IsGameStarted()
+        {
+            lock (LockGameObject)
+            {
+                return _gameService.IsGameStarted();
+            }
+        }
+
+        [HttpGet(Name = "IsGameFinished")]
+        public User? IsGameFinished()
+        {
+            lock (LockGameObject)
+            {
+                return _gameService.IsGameFinished();
             }
         }
     }

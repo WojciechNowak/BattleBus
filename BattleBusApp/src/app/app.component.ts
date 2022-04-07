@@ -27,6 +27,7 @@ export class AppComponent implements OnInit {
             icon: 'warning-circle',
             position: 'top',
             color: 'danger',
+            duration: 3000,
             buttons: [
               {
                 text: 'Battle',
@@ -39,7 +40,31 @@ export class AppComponent implements OnInit {
           }).then((x) => {x.present();});
         }
       });
-      
-    }, 1000)
+    }, 1000);
+
+    let interGame = window.setInterval(() => {
+      this.gameService.isGameAvailable().subscribe(x => {
+        if (x){
+          window.clearInterval(interGame);
+          let toast = this.toastCtrl.create({  
+            message: `Game is available to join!`,  
+            icon: 'warning-circle',
+            position: 'top',
+            color: 'danger',
+            duration: 3000,
+            buttons: [
+              {
+                text: 'Join',
+                role: 'cancel',
+                handler: () => {
+                  this.gameService.joinGame().subscribe((x) => {
+                    this.router.navigate(['tabs', 'play' ,'setup']);
+                  });
+                }
+              }]
+          }).then((x) => {x.present();});
+        }
+      });
+    }, 1000);
   }
 }

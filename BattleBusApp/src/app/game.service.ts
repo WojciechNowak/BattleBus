@@ -20,4 +20,37 @@ export class GameService {
       let request = this.http.get<string[]>('http://localhost:5075/PassengerInfo/Get');
       return request;
     }
+
+    createGame() {
+      return this.http.post(`http://localhost:5075/Game/CreateGame?userName=${this.userService.getUser().userName}`, '');
+    }
+
+    joinGame() {
+      return this.http.post(`http://localhost:5075/Game/JoinGame?userName=${this.userService.getUser().userName}`, '');
+    }
+
+    startGame() {
+      return this.http.post(`http://localhost:5075/Game/StartGame?userName=${this.userService.getUser().userName}`, '');
+    }
+
+    isGameAvailable() {
+      if(this.userService.getUser() == undefined){
+        return;
+      }
+      return this.http.get<boolean>('http://localhost:5075/Game/IsGameAvailable');
+    }
+
+    isGameStarted() {
+      if(this.userService.getUser() == undefined){
+        return;
+      }
+      return this.http.get<boolean>('http://localhost:5075/Game/IsGameStarted');
+    }
+
+    isGameFinished() {
+      if(this.userService.getUser() == undefined){
+        return;
+      }
+      return this.http.get<string>('http://localhost:5075/Game/IsGameFinished');
+    }
 }

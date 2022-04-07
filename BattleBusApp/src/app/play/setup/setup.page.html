@@ -13,7 +13,10 @@
     </ion-toolbar>
   </ion-header>
 
-  <ion-item>
-    <ion-button color="primary" (click)="setup()">Play Game</ion-button>
+  <ion-item *ngIf="!created" >
+    <ion-button color="primary" (click)="setup()">Create Game</ion-button>
+  </ion-item>
+  <ion-item *ngIf="created">
+    <ion-button  color="primary" (click)="start()">Play Game</ion-button>
   </ion-item>
 </ion-content>

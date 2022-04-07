@@ -1,8 +1,8 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
-interface leaderboardRow {
-  ranking: number,
-  username: string,
+export interface leaderboardRow {
+  userName: string,
   points: string
 }
 
@@ -11,6 +11,10 @@ interface leaderboardRow {
 })
 export class LeaderboardService {
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
+  get() {
+    let request = this.http.get<leaderboardRow[]>('http://localhost:5075/Game/GetLeaderboard');
+    return request;
+  }
 }

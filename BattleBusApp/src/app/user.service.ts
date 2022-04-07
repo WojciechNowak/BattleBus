@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 
-interface User  {
+export interface User  {
   userName: string, 
   gameStreak: number,
   level: number,

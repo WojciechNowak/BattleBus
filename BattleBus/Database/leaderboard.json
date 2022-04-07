@@ -10,5 +10,9 @@
   {
     "UserName": "player3",
     "Points": 2
+  },
+  {
+    "UserName": "player4",
+    "Points": 0
   }
 ]

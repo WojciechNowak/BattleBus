@@ -1,24 +1,33 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>
-      Game?
-    </ion-title>
+    <ion-row>
+      <ion-col col-10>
+        <ion-title class="item-text-center">
+          Game!
+        </ion-title>
+      </ion-col>
+        <ion-col col-2>
+          <ion-img style="max-height:150px;overflow:hidden;" src="https://cdn.estore.nu/48872-large_default/nerf-fortnite-microshots---micro-battle-bus.jpg"></ion-img>
+      </ion-col>
+    </ion-row>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title size="large">Game?</ion-title>
+      <ion-title size="large">Game!</ion-title>
     </ion-toolbar>
   </ion-header>
 
   <ion-item *ngIf="!submitted">
-    <ion-button color="primary" (click)="finish()">Finish</ion-button>
+    <ion-button color="primary" (click)="finish()">Play</ion-button>
   </ion-item>
   <ion-row *ngIf="submitted">
     <ion-item>
       <p>Waiting for other players</p>
+    </ion-item>
+    <ion-item>
       <p>Your result was : {{result}}</p>
     </ion-item>
   </ion-row>

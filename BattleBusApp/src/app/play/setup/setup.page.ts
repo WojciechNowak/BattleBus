@@ -41,6 +41,18 @@ export class SetupPage implements OnInit {
     this.gameService.createGame().subscribe(() => {
       console.info('Game Created!');
       this.created = true;
+       
+      let interGame = window.setInterval(() => {
+        this.gameService.whoIsInTheGame().subscribe(x => {
+          this.players = x;
+        });
+        this.gameService.isGameStarted().subscribe(x => {
+          if (x === true) {
+            window.clearInterval(interGame);
+            this.router.navigate(['tabs', 'play', 'battle']);
+          }
+        });
+      }, 1000);
     });
   }
 

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { GameService } from '../game.service';
 import { leaderboardRow, LeaderboardService } from '../leaderboard.service';
 import { User, UserService } from '../user.service';
 
@@ -10,9 +11,11 @@ import { User, UserService } from '../user.service';
 export class Tab3Page implements OnInit {
   board: leaderboardRow[];
   user: User;
+  lastWinner: string;
 
   constructor(private userService: UserService,
-    private leaderboardService: LeaderboardService) {}
+    private leaderboardService: LeaderboardService,
+    private gameService: GameService) {}
   
     ngOnInit(): void {
       this.leaderboardService.get().subscribe(x => {
@@ -20,6 +23,9 @@ export class Tab3Page implements OnInit {
         console.info(x);
       });
       this.user = this.userService.getUser();
+      this.lastWinner = this.gameService.lastWinner;
+      console.info(this.lastWinner);
+      console.info(this.gameService.lastWinner);
     }
 
 }

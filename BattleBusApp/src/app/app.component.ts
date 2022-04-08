@@ -51,7 +51,7 @@ export class AppComponent implements OnInit {
             icon: 'warning-circle',
             position: 'top',
             color: 'danger',
-            duration: 3000,
+            duration: 10000,
             buttons: [
               {
                 text: 'Join',

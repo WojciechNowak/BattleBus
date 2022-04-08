@@ -7,6 +7,8 @@ import { User, UserService } from './user.service';
   providedIn: 'root'
 })
 export class GameService {
+  lastWinner: string;
+  lastPlayers: string[];
 
   constructor(private http: HttpClient,
     private userService: UserService) { }
@@ -58,6 +60,10 @@ export class GameService {
       if(this.userService.getUser() == undefined){
         return;
       }
-      return this.http.get<User>('http://localhost:5075/Game/IsGameFinished');
+      let request = this.http.get<User>('http://localhost:5075/Game/IsGameFinished');
+      request.subscribe((x) => {
+        this.lastWinner = x.userName.toLowerCase();
+      });
+      return request;
     }
 }
